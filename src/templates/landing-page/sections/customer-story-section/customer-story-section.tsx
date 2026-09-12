@@ -34,7 +34,7 @@ export function CustomerStorySection() {
               key={customerStory.author.name}
               className="flex flex-col gap-6 rounded-lg bg-gray-500 p-6 md:p-12"
             >
-              <p className="text-balance text-gray-200 italic">
+              <p className="text-balance text-gray-200 text-body-md italic">
                 "{customerStory.content}"
               </p>
               <div className="flex items-centers gap-3">
