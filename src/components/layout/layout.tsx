@@ -1,6 +1,7 @@
 import { Inter, PT_Sans_Caption } from "next/font/google";
 import { Footer } from "./footer";
 import { Header } from "./header";
+import { CallToAction } from "@/templates/landing-page/sections";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -25,6 +26,7 @@ export function Layout({ children }: LayoutProps) {
     >
       <Header />
       <main className="flex-1 flex flex-col mb-12 mt-8">{children}</main>
+      <CallToAction />
       <Footer />
     </div>
   );
