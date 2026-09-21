@@ -10,8 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Avatar } from "@/components/avatar";
 import { Markdown } from "@/components/markdown";
-import { Button } from "@/components/ui/button";
-import { useShare } from "@/hooks/use-share";
+import { PostShare } from "./components/post-share";
 
 export interface PostProps {
   post: ContentLayerProps;
@@ -21,12 +20,6 @@ export function Post({ post }: PostProps) {
   const publishedDate = new Date(post?.date).toLocaleDateString("pt-BR");
 
   const postUrl = `https://site.set/blog/${post.slug}`;
-
-  const { shareButtons } = useShare({
-    url: postUrl,
-    title: post?.title,
-    text: post?.description,
-  });
 
   return (
     <main className="py-20 text-gray-100">
@@ -79,26 +72,11 @@ export function Post({ post }: PostProps) {
               <Markdown content={post?.body?.raw} />
             </div>
           </article>
-          <aside className="space-y-6">
-            <div className="rounded-lg bg-gray-700">
-              <h2 className="hidden md:block mb-4 text-heading-xs font-sans text-gray-100">
-                Compartilhar
-              </h2>
-              <div className="flex justify-between md:flex-col gap-2">
-                {shareButtons.map((provider) => (
-                  <Button
-                    key={provider.provider}
-                    variant="outline"
-                    className="md:w-full justify-start gap-2 w-fit"
-                    onClick={provider.action}
-                  >
-                    {provider.icon}
-                    <span className="hidden md:block">{provider.name}</span>
-                  </Button>
-                ))}
-              </div>
-            </div>
-          </aside>
+          <PostShare
+            description={post.description}
+            title={post.title}
+            url={postUrl}
+          />
         </div>
       </div>
     </main>
